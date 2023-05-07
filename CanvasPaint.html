@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body bgcolor="aqua">
+    <input type="color" id="color" />
+    <input type="range" id="range" value="5" />
+    <input type="button" onclick="ctx.clearRect(0,0,window.innerWidth,window.innerHeight)" value="Reset" style="background-color:red" />
+    <input type="button" value="Eraser" onclick="Eraser()" id="ers" />
+
+    <div id="div">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+
+        var div = document.getElementById("div");
+        var ers;
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight * 0.93;
+
+        var point = []
+        var allPoints = [];
+        var isPaint = false;
+        var color;
+        var range;
+        var eraser = false;
+
+
+        function mouseDown() {
+            color = document.getElementById("color").value;
+            range = document.getElementById("range").value;
+
+            point.push({ x: event.x, y: event.y });
+            isPaint = true;
+        }
+        function mouseMove() {
+            if (isPaint) {
+
+                point.push({ x: event.x, y: event.y });
+                if (!eraser) {
+                    for (var i = 0; i < point.length; i++) {
+
+                        if (i == 0) {
+                            ctx.beginPath();
+                            ctx.moveTo(point[i].x, point[i].y);
+                        }
+                        else {
+                            ctx.lineTo(point[i].x, point[i].y);
+                        }
+
+                        ctx.lineWidth = range;
+                        ctx.fillStyle = "red";
+                        ctx.strokeStyle = color;
+                        ctx.stroke();
+                    }
+                }
+                else {
+                    for (var i = 0; i < point.length; i++) {
+
+                        if (i == 0) {
+                            ctx.beginPath();
+                            ctx.moveTo(point[i].x, point[i].y);
+                        }
+                        else {
+                            ctx.lineTo(point[i].x, point[i].y);
+                        }
+                        colorAA = document.bgColor;
+                        ctx.lineWidth = range;
+                        ctx.fillStyle = colorAA ;
+                        ctx.strokeStyle = colorAA;
+                        ctx.stroke();
+
+                    }
+                }
+            }
+        }
+
+        function mouseUp() {
+            point = [];
+            isPaint = false;
+        }
+
+        div.addEventListener("mousedown", mouseDown);
+        div.addEventListener("mousemove", mouseMove);
+        div.addEventListener("mouseup", mouseUp);
+
+        function Eraser() {
+
+            ers = document.getElementById("ers");
+
+            if (ers.value != "Color") {
+                ers.value = "Color";
+                eraser = true;
+            }
+            else {
+                ers.value = "Eraser";
+                eraser = false;
+            }
+
+        }
+    </script>
+</body>
+</html>

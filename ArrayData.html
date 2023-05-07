@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+        var arr = [];
+        var Arr = [];
+        var nn = 1000;
+        var FinalResult = [];
+        var result = [];
+        for (var i = 0; i < nn; i++) {
+
+            var n = parseFloat(Math.random().toFixed(1));
+            if (n == 0.5 || n == 0 || n == 1) {
+                i--;
+                continue;
+            }
+            arr.push(n);
+            if (n > 0.5) {
+                Arr.push(1);
+            }
+            else {
+                Arr.push(0);
+            }
+
+
+        }
+
+        var obj = SplitArray(arr);
+        result.push(obj)
+
+        for (var i = 0; i < result.length; i++) {
+
+            if (result[i].AA0.length > 1) {
+                var obj = Variable(result[i].AA0);
+                result.push(obj);
+            }
+            else if (result[i].AA0.length == 1) {
+                FinalResult.push(result[i].AA0);
+            }
+
+            if (result[i].AA1.length > 1) {
+                var obj = Variable(result[i].AA1);
+                result.push(obj);
+            }
+            else if (result[i].AA1.length == 1) {
+                FinalResult.push(result[i].AA1);
+            }
+        }
+
+        // SplitArray Fun
+        function SplitArray(val) {
+            var AA0 = [];
+            var AA1 = [];
+            for (var i = 0; i < val.length; i++) {
+
+                if (val[i] < 0.5) {
+                    AA0.push(val[i]);
+                }
+                else {
+                    AA1.push(val[i]);
+                }
+
+            }
+
+            return { AA0, AA1 };
+        }
+
+        //Random Fun
+        function randamData(val) {
+
+            var randamArray = [];
+
+            for (var i = 0; i < val.length; i++) {
+                var n = parseFloat(Math.random().toFixed(1));
+                if (n == 0.5 || n == 0 || n == 1) {
+                    i--;
+                    continue;
+                }
+                randamArray.push(n);
+            }
+            return randamArray;
+        }
+
+        //create Variable
+        function Variable(val) {
+            var a = SplitArray(val);
+            var AA0 =randamData(a.AA0);
+            var AA1 =randamData(a.AA1);
+
+            return {AA0, AA1}
+
+        }
+    </script>
+</body>
+</html>

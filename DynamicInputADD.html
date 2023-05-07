@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <style>
+        #div1 {
+            margin-top: 40px;
+            width: 500px;
+            height: 500px;
+            background-color: aqua
+        }
+
+        input {
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4" id="div1">
+                <center>
+                    <strong style="font-size:30px">Dynamic </strong><br /><br />
+                </center>
+
+                <strong>Name</strong>
+                <input type="text" class=" form-control" /><br />
+                <strong>Email</strong>
+                <input type="text" class=" form-control" /><br />
+
+                <div class="col-sm-12" style="margin-left:-30px">
+                    <div class="col-sm-10" id="">
+                        <strong>Address</strong>
+                        <input type="text" class=" form-control" id="txt1" />
+                    </div>
+                    <div class="col-sm-2" id="">
+                        <strong>Add</strong><br />
+                        <button id="button" class="btn btn-danger" onclick="add()">click</button>
+                    </div>
+                </div>
+                <div  style="margin-left:-30px">
+                    <div  id="addData">
+
+                    
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-4"></div>
+
+        </div>
+    </div>
+
+    <script>
+        var i = 2;
+
+        function add() {
+
+            var element = document.createElement("input");
+            element.setAttribute("type", "text");
+            element.setAttribute("class", "form-control");
+            element.setAttribute("id", +"txt" + i++);
+            var br = document.createElement("br");
+            var strong = document.createElement("strong");
+            strong.innerHTML = "AddValue";
+
+            var div = document.getElementById("addData");
+            var div1 = document.getElementById("addData1");
+
+            var br1 = document.createElement("br");
+            strong.innerHTML = i;
+            var del = document.createElement("button");
+            del.setAttribute("class", "btn btn-danger");
+            del.setAttribute("onclick", "remove(this)");
+            del.innerHTML = "delete";
+
+            div.appendChild(br);
+            div.appendChild(strong);
+            div.appendChild(element);
+            div.appendChild(strong);
+            div.appendChild(del);
+            div.appendChild(br1);
+
+        }
+        function remove(al) {
+            al.parentNode.remove();
+        }
+
+    </script>
+
+</body>
+</html>
